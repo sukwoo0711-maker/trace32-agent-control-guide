@@ -4,14 +4,13 @@ This file records the main sources used for the guide. It is not a complete
 mirror of vendor documentation. Prefer the official source when behavior
 matters.
 
-## Original Prompt Source
+## Methodology Reference
 
-- GeekNews topic 31107, "Fable field guide: finding my unknowns":
-  <https://news.hada.io/topic?id=31107>
-
-Useful application: start agentic engineering work by finding unknowns before
-implementation. For TRACE32 this means explicitly listing hardware, RCL,
-pyrcl, CMM, GUI/headless, recovery, and safety unknowns.
+The review technique used here is the classic known/unknown quadrant matrix,
+applied to the hardware/GUI/target boundary. See
+[unknowns-field-guide.md](unknowns-field-guide.md). Start automation work by
+finding unknowns before implementation. For TRACE32 this means explicitly listing
+hardware, RCL, pyrcl, CMM, GUI/headless, recovery, and safety unknowns.
 
 ## Official Lauterbach And pyrcl Sources
 
@@ -101,8 +100,4 @@ Community posts repeatedly show these failure themes:
 - CMM examples in public repos are often board-specific and include reset,
   flash, register, watchdog, or memory mutation.
 - Timeout-free `Go` and `WAIT` patterns can hang CI.
-
-GeekNews direct searches for TRACE32/Lauterbach did not show a dedicated
-thread, so GeekNews is used here for the "unknowns" workflow rather than as a
-TRACE32 technical source.
 

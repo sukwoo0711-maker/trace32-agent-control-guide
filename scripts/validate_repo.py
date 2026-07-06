@@ -46,7 +46,12 @@ def main() -> int:
 
 def check_json() -> list[str]:
     errors: list[str] = []
-    for path in list((ROOT / "data").glob("*.json")) + list((ROOT / "schemas").glob("*.json")):
+    json_paths = (
+        list((ROOT / "data").glob("*.json"))
+        + list((ROOT / "schemas").glob("*.json"))
+        + list((ROOT / "examples").rglob("*.json"))
+    )
+    for path in json_paths:
         try:
             json.loads(path.read_text(encoding="utf-8"))
         except Exception as exc:

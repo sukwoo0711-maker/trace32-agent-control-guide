@@ -1,0 +1,43 @@
+{
+  "id": "TC-STATUS-001",
+  "title": "Boot status flag reaches READY",
+  "description": "After boot, the global status variable must equal READY (2), the target must be stopped, and boot time must stay within budget.",
+  "prerequisites": {
+    "board": "generic",
+    "probe": "generic JTAG/SWD",
+    "notes": "Target already loaded and run to the idle breakpoint by a board-approved setup script. This test is read-only."
+  },
+  "timeout_ms": 5000,
+  "assertions": [
+    {
+      "id": "status-ready",
+      "source": "variable",
+      "expression": "Var.VALUE(g_status)",
+      "operator": "eq",
+      "expected": 2,
+      "dry_run_actual": 2
+    },
+    {
+      "id": "target-stopped",
+      "source": "target_state",
+      "expression": "STATE.RUN()",
+      "operator": "eq",
+      "expected": false,
+      "dry_run_actual": false
+    },
+    {
+      "id": "boot-time-within-budget",
+      "source": "variable",
+      "expression": "Var.VALUE(g_boot_ms)",
+      "operator": "le",
+      "expected": 250,
+      "tolerance": 5,
+      "dry_run_actual": 248
+    }
+  ],
+  "evidence": {
+    "capture_message": true,
+    "capture_area": true,
+    "write_json_log": true
+  }
+}

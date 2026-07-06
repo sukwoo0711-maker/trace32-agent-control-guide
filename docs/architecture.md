@@ -3,7 +3,7 @@
 The recommended shape is intentionally small:
 
 ```text
-AI agent
+controller (agent / CI / script)
   -> command envelope
   -> policy gate
   -> Python observer/controller
@@ -13,7 +13,7 @@ AI agent
   -> probe and target
 ```
 
-The agent should not talk directly in free-form TRACE32 commands. It should
+The controller should not talk directly in free-form TRACE32 commands. It should
 submit a command envelope with intent, risk, timeout, expected state, and
 evidence requests. The observer/controller is responsible for translating that
 intent into pyrcl calls and for collecting status after each action.
@@ -54,8 +54,8 @@ The policy plane classifies commands:
   watchdogs;
 - `danger`: can brick, erase, unlock, leak firmware, or hide safety failures.
 
-AI agents may run `observe` and selected `control` commands after validation.
-`mutate` and `danger` commands require a local board-approved runbook.
+Automated controllers may run `observe` and selected `control` commands after
+validation. `mutate` and `danger` commands require a local board-approved runbook.
 
 ## Evidence Plane
 

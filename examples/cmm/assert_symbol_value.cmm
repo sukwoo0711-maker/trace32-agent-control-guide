@@ -1,0 +1,23 @@
+; assert_symbol_value.cmm
+; Observe-only evidence collector for a single MCU assertion.
+;
+; Reads a symbol value, the program counter, and target run state, then writes
+; them to a log file for the Python test runner to compare against an expected
+; value. This script does NOT change target memory, registers, or run state, so
+; it is safe for generic, headless, and CI use.
+;
+; Usage: DO assert_symbol_value <logfile> <symbol>
+
+PRIVATE &LOG &SYM
+ENTRY &LOG &SYM
+
+OPEN #1 "&LOG" /Create
+WRITE #1 "symbol=" "&SYM"
+WRITE #1 "value=" Var.VALUE(&SYM)
+WRITE #1 "pc=" Register(PC)
+WRITE #1 "state_run=" STATE.RUN()
+CLOSE #1
+
+PRINT "assert evidence written to &LOG"
+
+ENDDO

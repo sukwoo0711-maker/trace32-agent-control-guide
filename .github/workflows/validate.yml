@@ -14,3 +14,4 @@ jobs:
           python-version: "3.11"
       - run: python scripts/validate_repo.py
       - run: python examples/python/trace32_observer.py --dry-run --command "PRINT agent_probe"
+      - run: python examples/python/trace32_test_runner.py --dry-run --test-case examples/test_cases/status_check.json

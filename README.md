@@ -1,10 +1,16 @@
 # TRACE32 Agent Control Guide
 
-Practical guide for using AI agents with Lauterbach TRACE32 through the
-Remote API, pyrcl, and PRACTICE/CMM scripts without falling into blind waits,
-unsafe recovery commands, or headless CI hangs.
+Practical guide for driving Lauterbach TRACE32 from any automated controller —
+an AI agent, a CI job, or a local script — through the Remote API, pyrcl, and
+PRACTICE/CMM scripts, without falling into blind waits, unsafe recovery commands,
+or headless CI hangs.
 
-Research date: 2026-07-06 KST.
+This guide is deliberately harness-neutral. It does not depend on any specific AI
+product, model, IDE, or agent runtime. "Controller" below means whatever drives
+TRACE32: a human-run script, a CI pipeline, or an autonomous agent.
+
+Research date: 2026-07-06 KST. Technical claims in this repo were verified against
+PyPI metadata and the pyrcl source; see [docs/evidence-index.md](docs/evidence-index.md).
 
 ## Executive Recommendation
 
@@ -43,26 +49,34 @@ headless session.
 
 ## Repository Map
 
-- [docs/fable-unknowns-application.md](docs/fable-unknowns-application.md)
-  applies the GeekNews "unknowns" article to this TRACE32 work.
-- [docs/architecture.md](docs/architecture.md) describes the AI agent to
+- [docs/unknowns-field-guide.md](docs/unknowns-field-guide.md) applies the
+  known/unknown quadrant matrix to the TRACE32 hardware/GUI/target boundary.
+- [docs/architecture.md](docs/architecture.md) describes the controller-to-
   TRACE32 control architecture.
 - [docs/pyrcl-observation-loop.md](docs/pyrcl-observation-loop.md) is the core
   non-blind wait design.
 - [docs/cmm-practice-guide.md](docs/cmm-practice-guide.md) covers practical
   CMM/PRACTICE rules and gotchas.
+- [docs/test-verdict-model.md](docs/test-verdict-model.md) turns observations
+  into deterministic PASS/FAIL verdicts and CI-readable reports.
 - [docs/recovery-playbook.md](docs/recovery-playbook.md) classifies failures
   and recovery escalation.
 - [docs/firmware-automation-patterns.md](docs/firmware-automation-patterns.md)
   connects the pattern to CI, HIL, and regression tests.
+- [docs/research-notes.md](docs/research-notes.md) records the consolidated
+  official and community findings.
 - [docs/evidence-index.md](docs/evidence-index.md) lists official, GitHub,
-  YouTube, blog, and community sources.
+  video, blog, and community sources.
 - [examples/python/trace32_observer.py](examples/python/trace32_observer.py)
   provides a dry-run friendly observer wrapper for pyrcl.
+- [examples/python/trace32_test_runner.py](examples/python/trace32_test_runner.py)
+  evaluates a test case into a verdict and emits JUnit XML.
 - [examples/cmm](examples/cmm) contains catalog-safe CMM examples and recovery
   candidates.
 - [schemas/command_envelope.schema.json](schemas/command_envelope.schema.json)
-  defines a structured agent-to-TRACE32 command envelope.
+  defines a structured controller-to-TRACE32 command envelope.
+- [schemas/test_case.schema.json](schemas/test_case.schema.json) defines a
+  structured MCU test case with assertions and evidence requests.
 
 ## Minimal RCL Configuration
 
