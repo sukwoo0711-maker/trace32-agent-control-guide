@@ -1,0 +1,20 @@
+; agent_status_probe.cmm
+; Read-only status probe for automation evidence.
+
+PRIVATE &LOG
+
+ENTRY &LOG
+IF "&LOG"==""
+(
+  &LOG="agent_status_probe.log"
+)
+
+OPEN #1 "&LOG" /Create
+WRITE #1 "trace32_agent_status_probe"
+WRITE #1 "state_run=" STATE.RUN()
+WRITE #1 "pc=" Register(PC)
+CLOSE #1
+
+PRINT "wrote agent status probe log"
+ENDDO
+

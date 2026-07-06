@@ -1,0 +1,28 @@
+; wait_until_stop.cmm
+; Bounded wait for the target to stop. Intended for use after an approved Go.
+
+PRIVATE &COUNT
+PRIVATE &MAXCOUNT
+
+ENTRY &MAXCOUNT
+IF "&MAXCOUNT"==""
+(
+  &MAXCOUNT="100."
+)
+
+&COUNT="0."
+RePeaT &MAXCOUNT
+(
+  IF !STATE.RUN()
+  (
+    PRINT "target stopped"
+    ENDDO
+  )
+
+  WAIT 100.ms
+  &COUNT="&COUNT"+1.
+)
+
+PRINT "timeout waiting for target stop"
+ENDDO
+

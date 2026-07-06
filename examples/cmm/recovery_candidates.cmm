@@ -1,0 +1,23 @@
+; recovery_candidates.cmm
+; This file is intentionally non-executable guidance.
+;
+; Do not paste board-reset commands from public repositories into generic
+; automation. Build a local approved runbook before enabling these actions.
+;
+; Candidate categories requiring approval:
+; - debug system reset or up/down transitions
+; - flash erase/program/unlock operations
+; - memory, register, PC, MMU, or cache mutation
+; - watchdog disable
+; - target terminal input
+; - firmware dump
+;
+; Safer default recovery ladder:
+; 1. capture message/state/evidence
+; 2. reconnect and query state
+; 3. issue Break only if approved
+; 4. preserve logs
+; 5. run board-specific reset only from local runbook
+;
+ENDDO
+

@@ -1,0 +1,85 @@
+{
+  "version": "2026-07-06",
+  "classes": {
+    "observe": {
+      "description": "Read-only or evidence-producing operations.",
+      "examples": [
+        "PRINT",
+        "AREA",
+        "OPEN",
+        "WRITE",
+        "CLOSE",
+        "Var.PRINT",
+        "Var.WRITE",
+        "Var.EXPORT",
+        "Register(...)",
+        "Var.VALUE(...)",
+        "STATE.RUN()",
+        "FOUND()",
+        "FILE.EOF()"
+      ]
+    },
+    "bounded_control": {
+      "description": "Execution control allowed only with explicit timeout and evidence.",
+      "examples": [
+        "WAIT",
+        "Go",
+        "Break",
+        "Step",
+        "Break.Set",
+        "Break.Delete",
+        "Break.List",
+        "Var.Break.Set",
+        "Var.Watch",
+        "Var.AddWatch"
+      ]
+    },
+    "practice_flow": {
+      "description": "PRACTICE flow and macro commands allowed in examples.",
+      "examples": [
+        "ENDDO",
+        "DO",
+        "ENTRY",
+        "PARAMETERS",
+        "LOCAL",
+        "PRIVATE",
+        "IF",
+        "ELSE",
+        "RePeaT",
+        "WHILE",
+        "GOTO",
+        "GOSUB",
+        "RETURN"
+      ]
+    },
+    "requires_board_approval": {
+      "description": "Commands that can mutate target/debugger state or block headless automation.",
+      "examples": [
+        "SYStem.*",
+        "SYStem.Up",
+        "SYStem.Down",
+        "SYStem.RESet",
+        "RESet",
+        "Data.LOAD.*",
+        "Data.Set",
+        "Register.Set",
+        "Register.* writes",
+        "Var.set",
+        "FLASH.*",
+        "TrOnchip.*",
+        "CORE.*",
+        "MAP.*",
+        "MMU.*",
+        "TRANSlation.*",
+        "TERM.Out",
+        "TASK.CONFIG",
+        "DIALOG.*",
+        "ENTER",
+        "PAUSE",
+        "STOP",
+        "SCREEN.WAIT"
+      ]
+    }
+  }
+}
+

@@ -1,0 +1,112 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/trace32-agent-control-guide/command_envelope.schema.json",
+  "title": "TRACE32 Agent Command Envelope",
+  "type": "object",
+  "required": [
+    "id",
+    "intent",
+    "risk",
+    "command",
+    "timeout_ms",
+    "expected"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "intent": {
+      "type": "string",
+      "minLength": 1
+    },
+    "risk": {
+      "type": "string",
+      "enum": [
+        "observe",
+        "bounded_control",
+        "mutate",
+        "danger"
+      ]
+    },
+    "command": {
+      "type": "object",
+      "required": [
+        "kind",
+        "text"
+      ],
+      "additionalProperties": false,
+      "properties": {
+        "kind": {
+          "type": "string",
+          "enum": [
+            "cmd",
+            "fnc",
+            "cmm"
+          ]
+        },
+        "text": {
+          "type": "string",
+          "minLength": 1
+        }
+      }
+    },
+    "timeout_ms": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 3600000
+    },
+    "expected": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "practice": {
+          "type": "string",
+          "enum": [
+            "not_running",
+            "running",
+            "dialog",
+            "unknown",
+            "any"
+          ]
+        },
+        "target_running": {
+          "type": [
+            "boolean",
+            "null"
+          ]
+        },
+        "message_error_allowed": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "evidence": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "capture_message": {
+          "type": "boolean",
+          "default": true
+        },
+        "capture_area": {
+          "type": "boolean",
+          "default": false
+        },
+        "capture_window": {
+          "type": [
+            "string",
+            "null"
+          ]
+        },
+        "write_json_log": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  }
+}
+
